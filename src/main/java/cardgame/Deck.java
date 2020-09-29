@@ -21,6 +21,10 @@ public class Deck {
         return cards.poll();
     }
 
+    public boolean hasCardsToDeal(int neededCards) {
+        return cards.size() >= neededCards;
+    }
+
     @Override
     public String toString() {
         return "Deck{" +

@@ -6,13 +6,19 @@ import java.util.List;
 
 public class CardTriple {
 
-    private Card first;
+    public static final int TRAIL_BASE_SCORE = 10000;
 
-    private Card second;
+    public static final int SEQUENCE_BASE_SCORE = 1000;
 
-    private Card third;
+    public static final int PAIR_BASE_SCORE = 100;
 
-    private int totalScore;
+    private final Card first;
+
+    private final Card second;
+
+    private final Card third;
+
+    private final int totalScore;
 
     private boolean isTrail;
 
@@ -25,19 +31,26 @@ public class CardTriple {
         this.second = second;
         this.third = third;
         recognizePatterns();
-        calculateTotalScore();
+        this.totalScore = calculateTotalScore();
     }
 
-    private void calculateTotalScore() {
-        this.totalScore = first.getScore() + second.getScore() + third.getScore();
+    private int calculateTotalScore() {
+        int totalScore = first.getScore() + second.getScore() + third.getScore();
+        if (this.isTrail) {
+            totalScore += TRAIL_BASE_SCORE;
+        } else if (this.isSequence) {
+            totalScore += SEQUENCE_BASE_SCORE;
+        } else if (this.hasPair) {
+            totalScore += PAIR_BASE_SCORE;
+        }
+        return totalScore;
     }
 
     private void recognizePatterns() {
         if (first.getCardType() == second.getCardType()
                 && third.getCardType() == second.getCardType()) {
             this.isTrail = true;
-        }
-        if (first.getCardType() == second.getCardType()
+        } else if (first.getCardType() == second.getCardType()
                 || third.getCardType() == second.getCardType()
                 || first.getCardType() == third.getCardType()) {
             this.hasPair = true;
@@ -51,19 +64,6 @@ public class CardTriple {
                 this.isSequence = true;
             }
         }
-    }
-
-
-    public Card getFirst() {
-        return first;
-    }
-
-    public Card getSecond() {
-        return second;
-    }
-
-    public Card getThird() {
-        return third;
     }
 
     public boolean isTrail() {
@@ -80,5 +80,18 @@ public class CardTriple {
 
     public int getTotalScore() {
         return totalScore;
+    }
+
+    @Override
+    public String toString() {
+        return "CardTriple{" +
+                "first=" + first +
+                ", second=" + second +
+                ", third=" + third +
+                ", totalScore=" + totalScore +
+                ", isTrail=" + isTrail +
+                ", isSequence=" + isSequence +
+                ", hasPair=" + hasPair +
+                '}';
     }
 }

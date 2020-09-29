@@ -3,14 +3,9 @@ package cardgame;
 public class Main {
 
     public static void main(String[] args) {
-
-        Deck deck = DeckFactory.createDeck();
-
-        deck.shuffle();
-        System.out.println(deck);
-        deck.shuffle();
-        System.out.println(deck);
-
+        Game game = new Game(4);
+        game.play();
+        System.out.println(game.getWinner());
     }
 
 }

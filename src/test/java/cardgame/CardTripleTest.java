@@ -15,7 +15,7 @@ public class CardTripleTest {
     void testTrailPattern(CardTriple cardTriple) {
         assertTrue(cardTriple.isTrail());
         assertFalse(cardTriple.isSequence());
-        assertTrue(cardTriple.isHasPair());
+        assertFalse(cardTriple.isHasPair());
     }
 
     @ParameterizedTest
