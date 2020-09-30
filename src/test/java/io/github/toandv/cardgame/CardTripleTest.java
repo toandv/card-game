@@ -1,13 +1,12 @@
 package io.github.toandv.cardgame;
 
-import cardgame.model.*;
 import io.github.toandv.cardgame.model.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CardTripleTest {
 

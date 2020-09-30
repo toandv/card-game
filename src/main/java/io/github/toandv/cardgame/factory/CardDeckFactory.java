@@ -1,6 +1,5 @@
 package io.github.toandv.cardgame.factory;
 
-import cardgame.model.*;
 import io.github.toandv.cardgame.model.*;
 
 import java.util.ArrayList;

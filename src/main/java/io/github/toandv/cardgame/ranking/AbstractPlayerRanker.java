@@ -5,7 +5,6 @@ import io.github.toandv.cardgame.model.Player;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
 import java.util.stream.Collectors;
 
 public abstract class AbstractPlayerRanker implements PlayerRanker {

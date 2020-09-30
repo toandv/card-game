@@ -10,7 +10,7 @@ public enum CardTriplePattern {
 
     NO_PATTERN(0);
 
-    private int score;
+    private final int score;
 
     CardTriplePattern(int score) {
         this.score = score;

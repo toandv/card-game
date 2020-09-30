@@ -18,6 +18,9 @@ public class CardTriple {
     private final int totalScore;
 
     public CardTriple(Card first, Card second, Card third) {
+        Objects.requireNonNull(first);
+        Objects.requireNonNull(second);
+        Objects.requireNonNull(third);
         this.first = first;
         this.second = second;
         this.third = third;

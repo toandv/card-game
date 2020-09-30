@@ -1,10 +1,10 @@
 package io.github.toandv.cardgame.model;
 
 import io.github.toandv.cardgame.exception.MaxPlayersExceededException;
-import io.github.toandv.cardgame.ranking.PlayerRanker;
-import io.github.toandv.cardgame.ranking.PlayerRankerType;
 import io.github.toandv.cardgame.factory.CardDeckFactory;
 import io.github.toandv.cardgame.factory.PlayerRankerFactory;
+import io.github.toandv.cardgame.ranking.PlayerRanker;
+import io.github.toandv.cardgame.ranking.PlayerRankerType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class Game {
 
     private CardDeck cardDeck;
 
-    private int maxPlayers = 17; // 52 / 3
+    private final int maxPlayers = 17; // 52 / 3
 
     private final PlayerRankerFactory playerRankerFactory = new PlayerRankerFactory();
 

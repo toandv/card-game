@@ -1,13 +1,12 @@
 package io.github.toandv.cardgame;
 
 import io.github.toandv.cardgame.factory.PlayerRankerFactory;
-import cardgame.model.*;
-import io.github.toandv.cardgame.model.CardType;
-import io.github.toandv.cardgame.ranking.PlayerRanker;
-import io.github.toandv.cardgame.ranking.PlayerRankerType;
 import io.github.toandv.cardgame.model.Card;
 import io.github.toandv.cardgame.model.CardSuit;
+import io.github.toandv.cardgame.model.CardType;
 import io.github.toandv.cardgame.model.Player;
+import io.github.toandv.cardgame.ranking.PlayerRanker;
+import io.github.toandv.cardgame.ranking.PlayerRankerType;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 

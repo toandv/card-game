@@ -1,7 +1,6 @@
 package io.github.toandv.cardgame;
 
 import io.github.toandv.cardgame.factory.PlayerRankerFactory;
-import cardgame.model.*;
 import io.github.toandv.cardgame.model.*;
 import io.github.toandv.cardgame.ranking.PlayerRanker;
 import io.github.toandv.cardgame.ranking.PlayerRankerType;

@@ -28,11 +28,11 @@ public enum CardType {
 
     TWO("2", 2, 2);
 
-    private int value;
+    private final int value;
 
-    private int topCardOrder;
+    private final int topCardOrder;
 
-    private String shortName;
+    private final String shortName;
 
     CardType(String shortName, int value, int topCardOrder) {
         this.shortName = shortName;

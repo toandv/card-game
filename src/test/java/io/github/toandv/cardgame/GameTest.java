@@ -1,6 +1,5 @@
 package io.github.toandv.cardgame;
 
-import cardgame.model.*;
 import io.github.toandv.cardgame.model.*;
 import org.junit.jupiter.api.Test;
 

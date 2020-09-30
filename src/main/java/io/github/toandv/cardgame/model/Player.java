@@ -7,13 +7,13 @@ import java.util.Objects;
 
 public class Player {
 
-    private int playerId;
+    private final int playerId;
 
     private CardTriple cardTriple;
 
-    private List<Card> dealtCards = new ArrayList<>();
+    private final List<Card> dealtCards = new ArrayList<>();
 
-    private LinkedList<Card> drawnCards = new LinkedList<>();
+    private final LinkedList<Card> drawnCards = new LinkedList<>();
 
     public Player(int playerId) {
         this.playerId = playerId;
