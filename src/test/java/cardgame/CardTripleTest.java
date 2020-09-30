@@ -1,5 +1,9 @@
 package cardgame;
 
+import cardgame.model.Card;
+import cardgame.model.CardSuit;
+import cardgame.model.CardTriple;
+import cardgame.model.CardType;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -45,17 +49,17 @@ public class CardTripleTest {
     static Stream<CardTriple> trailCards() {
         return Stream.of(
                 new CardTriple(
-                        new Card(CardType.ACE, Suit.CLOVES),
-                        new Card(CardType.ACE, Suit.HEARTS),
-                        new Card(CardType.ACE, Suit.TILES)),
+                        new Card(CardType.ACE, CardSuit.CLOVES),
+                        new Card(CardType.ACE, CardSuit.HEARTS),
+                        new Card(CardType.ACE, CardSuit.TILES)),
                 new CardTriple(
-                        new Card(CardType.TWO, Suit.CLOVES),
-                        new Card(CardType.TWO, Suit.HEARTS),
-                        new Card(CardType.TWO, Suit.TILES)),
+                        new Card(CardType.TWO, CardSuit.CLOVES),
+                        new Card(CardType.TWO, CardSuit.HEARTS),
+                        new Card(CardType.TWO, CardSuit.TILES)),
                 new CardTriple(
-                        new Card(CardType.KING, Suit.CLOVES),
-                        new Card(CardType.KING, Suit.HEARTS),
-                        new Card(CardType.KING, Suit.TILES))
+                        new Card(CardType.KING, CardSuit.CLOVES),
+                        new Card(CardType.KING, CardSuit.HEARTS),
+                        new Card(CardType.KING, CardSuit.TILES))
         );
     }
 
@@ -63,51 +67,51 @@ public class CardTripleTest {
     static Stream<CardTriple> sequenceCards() {
         return Stream.of(
                 new CardTriple(
-                        new Card(CardType.ACE, Suit.CLOVES),
-                        new Card(CardType.TWO, Suit.HEARTS),
-                        new Card(CardType.THREE, Suit.TILES)),
+                        new Card(CardType.ACE, CardSuit.CLOVES),
+                        new Card(CardType.TWO, CardSuit.HEARTS),
+                        new Card(CardType.THREE, CardSuit.TILES)),
                 new CardTriple(
-                        new Card(CardType.JACK, Suit.CLOVES),
-                        new Card(CardType.QUEEN, Suit.HEARTS),
-                        new Card(CardType.KING, Suit.TILES)),
+                        new Card(CardType.JACK, CardSuit.CLOVES),
+                        new Card(CardType.QUEEN, CardSuit.HEARTS),
+                        new Card(CardType.KING, CardSuit.TILES)),
                 new CardTriple(
-                        new Card(CardType.FIVE, Suit.CLOVES),
-                        new Card(CardType.SIX, Suit.HEARTS),
-                        new Card(CardType.SEVEN, Suit.TILES))
+                        new Card(CardType.FIVE, CardSuit.CLOVES),
+                        new Card(CardType.SIX, CardSuit.HEARTS),
+                        new Card(CardType.SEVEN, CardSuit.TILES))
         );
     }
 
     static Stream<CardTriple> pairCards() {
         return Stream.of(
                 new CardTriple(
-                        new Card(CardType.ACE, Suit.CLOVES),
-                        new Card(CardType.ACE, Suit.HEARTS),
-                        new Card(CardType.THREE, Suit.TILES)),
+                        new Card(CardType.ACE, CardSuit.CLOVES),
+                        new Card(CardType.ACE, CardSuit.HEARTS),
+                        new Card(CardType.THREE, CardSuit.TILES)),
                 new CardTriple(
-                        new Card(CardType.JACK, Suit.CLOVES),
-                        new Card(CardType.JACK, Suit.HEARTS),
-                        new Card(CardType.KING, Suit.TILES)),
+                        new Card(CardType.JACK, CardSuit.CLOVES),
+                        new Card(CardType.JACK, CardSuit.HEARTS),
+                        new Card(CardType.KING, CardSuit.TILES)),
                 new CardTriple(
-                        new Card(CardType.FIVE, Suit.CLOVES),
-                        new Card(CardType.SEVEN, Suit.HEARTS),
-                        new Card(CardType.SEVEN, Suit.TILES))
+                        new Card(CardType.FIVE, CardSuit.CLOVES),
+                        new Card(CardType.SEVEN, CardSuit.HEARTS),
+                        new Card(CardType.SEVEN, CardSuit.TILES))
         );
     }
 
     static Stream<CardTriple> noPatternCards() {
         return Stream.of(
                 new CardTriple(
-                        new Card(CardType.ACE, Suit.CLOVES),
-                        new Card(CardType.FOUR, Suit.HEARTS),
-                        new Card(CardType.THREE, Suit.TILES)),
+                        new Card(CardType.ACE, CardSuit.CLOVES),
+                        new Card(CardType.FOUR, CardSuit.HEARTS),
+                        new Card(CardType.THREE, CardSuit.TILES)),
                 new CardTriple(
-                        new Card(CardType.JACK, Suit.CLOVES),
-                        new Card(CardType.FIVE, Suit.HEARTS),
-                        new Card(CardType.KING, Suit.TILES)),
+                        new Card(CardType.JACK, CardSuit.CLOVES),
+                        new Card(CardType.FIVE, CardSuit.HEARTS),
+                        new Card(CardType.KING, CardSuit.TILES)),
                 new CardTriple(
-                        new Card(CardType.FIVE, Suit.CLOVES),
-                        new Card(CardType.TWO, Suit.HEARTS),
-                        new Card(CardType.SEVEN, Suit.TILES))
+                        new Card(CardType.FIVE, CardSuit.CLOVES),
+                        new Card(CardType.TWO, CardSuit.HEARTS),
+                        new Card(CardType.SEVEN, CardSuit.TILES))
         );
     }
 

@@ -1,6 +1,12 @@
-package cardgame;
+package cardgame.model;
 
+import cardgame.model.Card;
+import cardgame.model.CardDeck;
+import cardgame.model.CardTriple;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Player {
 
@@ -8,14 +14,21 @@ public class Player {
 
     private CardTriple cardTriple;
 
-    private LinkedList<Card> dealtCards = new LinkedList<>();
+    private List<Card> dealtCards = new ArrayList<>();
+
+    private LinkedList<Card> drawnCards = new LinkedList<>();
 
     public Player(int playerId) {
         this.playerId = playerId;
     }
 
     public void receiveCard(Card card) {
-        dealtCards.addLast(card);
+        dealtCards.add(card);
+    }
+
+    public void drawRandomCard(CardDeck deck) {
+        Card card = deck.getRandomCard();
+        drawnCards.addLast(card);
     }
 
     public void faceUpCards() {
@@ -26,11 +39,11 @@ public class Player {
         return cardTriple.getTotalScore();
     }
 
-    public int getAdditionalCardScore() {
-        if (dealtCards.size() == 3) {
+    public int getLastDrawnCardOrder() {
+        if (drawnCards.isEmpty()) {
             return 0;
         }
-        return dealtCards.getLast().getScore();
+        return drawnCards.getLast().getTopCardOrder();
     }
 
     @Override

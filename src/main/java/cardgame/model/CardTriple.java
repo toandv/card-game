@@ -1,4 +1,6 @@
-package cardgame;
+package cardgame.model;
+
+import cardgame.model.Card;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -35,7 +37,7 @@ public class CardTriple {
     }
 
     private int calculateTotalScore() {
-        int totalScore = first.getScore() + second.getScore() + third.getScore();
+        int totalScore = first.getValue() + second.getValue() + third.getValue();
         if (this.isTrail) {
             totalScore += TRAIL_BASE_SCORE;
         } else if (this.isSequence) {

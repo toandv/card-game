@@ -1,4 +1,4 @@
-package cardgame;
+package cardgame.exception;
 
 public class OutOfCardException extends RuntimeException {
 

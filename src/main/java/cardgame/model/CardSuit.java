@@ -1,6 +1,6 @@
-package cardgame;
+package cardgame.model;
 
-public enum Suit {
+public enum CardSuit {
 
     HEARTS,
 
