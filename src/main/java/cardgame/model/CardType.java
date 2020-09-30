@@ -8,7 +8,7 @@ public enum CardType {
 
     QUEEN("Q", 12, 12),
 
-    JACK("J", 11, 12),
+    JACK("J", 11, 11),
 
     TEN("10", 10, 10),
 

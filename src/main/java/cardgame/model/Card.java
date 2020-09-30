@@ -1,5 +1,7 @@
 package cardgame.model;
 
+import java.util.Objects;
+
 public class Card {
 
     private final CardType cardType;
@@ -37,5 +39,19 @@ public class Card {
                 "cardName=" + cardType.name() +
                 ", suit=" + cardSuit.name() +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return cardType == card.cardType &&
+                cardSuit == card.cardSuit;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cardType, cardSuit);
     }
 }

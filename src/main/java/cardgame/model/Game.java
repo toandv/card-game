@@ -1,9 +1,6 @@
 package cardgame.model;
 
 import cardgame.exception.MaxPlayersExceededException;
-import cardgame.model.Card;
-import cardgame.model.CardDeck;
-import cardgame.model.Player;
 import cardgame.ranking.PlayerRanker;
 import cardgame.ranking.PlayerRankerType;
 import cardgame.factory.CardDeckFactory;
@@ -20,7 +17,7 @@ public class Game {
 
     private Player winner;
 
-    private final CardDeck cardDeck;
+    private CardDeck cardDeck;
 
     private int maxPlayers = 17; // 52 / 3
 
@@ -36,7 +33,12 @@ public class Game {
         for (int i = 0; i < numberOfPlayers; i++) {
             players.add(new Player(i + 1));
         }
-        this.cardDeck = cardDeckFactory.createStandardDeck();
+        this.cardDeck = cardDeckFactory.createCardDeck(CardDeckType.STANDARD);
+    }
+
+    public Game(int numberOfPlayers, CardDeck cardDeck) {
+        this(numberOfPlayers);
+        this.cardDeck = cardDeck;
     }
 
     public void play() {
@@ -51,10 +53,10 @@ public class Game {
         }
 
         // find winner
-        determineWinner(this.players);
+        determineWinner();
     }
 
-    private void dealCardsToPlayers(int numberOfCards, List<Player> players) {
+    public void dealCardsToPlayers(int numberOfCards, List<Player> players) {
         for (int i = 0; i < numberOfCards; i++) {
             for (Player player : players) {
                 Card dealtCard = cardDeck.getFirstCard();
@@ -63,8 +65,8 @@ public class Game {
         }
     }
 
-    private void determineWinner(List<Player> players) {
-        PlayerRanker cardTriplePlayerRanker = playerRankerFactory.getPlayerRanker(PlayerRankerType.CARD_TRIPLE, players);
+    private void determineWinner() {
+        PlayerRanker cardTriplePlayerRanker = playerRankerFactory.getPlayerRanker(PlayerRankerType.CARD_TRIPLE, new ArrayList<>(this.players));
         cardTriplePlayerRanker.rank();
         if (cardTriplePlayerRanker.hasWinner()) {
             this.winner = cardTriplePlayerRanker.getWinner();
@@ -74,7 +76,7 @@ public class Game {
     }
 
     public void determineWinnerFromTiedPlayers(List<Player> tiedPlayers) {
-        if (this.cardDeck.hasCardsToDeal(tiedPlayers.size())) {
+        if (this.cardDeck.hasEnoughCards(tiedPlayers.size())) {
 
             // each tied player draws a random card
             tiedPlayers.forEach(player -> player.drawRandomCard(this.cardDeck));

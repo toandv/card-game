@@ -1,49 +1,39 @@
 package cardgame;
 
-import cardgame.model.Card;
-import cardgame.model.CardSuit;
-import cardgame.model.CardTriple;
-import cardgame.model.CardType;
+import cardgame.model.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CardTripleTest {
 
     @ParameterizedTest
     @MethodSource("trailCards")
     void testTrailPattern(CardTriple cardTriple) {
-        assertTrue(cardTriple.isTrail());
-        assertFalse(cardTriple.isSequence());
-        assertFalse(cardTriple.isHasPair());
+        assertEquals(CardTriplePattern.TRAIL, cardTriple.getPattern());
     }
 
     @ParameterizedTest
     @MethodSource("sequenceCards")
     void testSequencePattern(CardTriple cardTriple) {
-        assertFalse(cardTriple.isTrail());
-        assertTrue(cardTriple.isSequence());
-        assertFalse(cardTriple.isHasPair());
+        assertEquals(CardTriplePattern.SEQUENCE, cardTriple.getPattern());
     }
 
     @ParameterizedTest
     @MethodSource("pairCards")
     void testPairPattern(CardTriple cardTriple) {
-        assertFalse(cardTriple.isTrail());
-        assertFalse(cardTriple.isSequence());
-        assertTrue(cardTriple.isHasPair());
+        assertEquals(CardTriplePattern.PAIR, cardTriple.getPattern());
     }
 
     @ParameterizedTest
     @MethodSource("noPatternCards")
     void testNoPattern(CardTriple cardTriple) {
-        assertFalse(cardTriple.isTrail());
-        assertFalse(cardTriple.isSequence());
-        assertFalse(cardTriple.isHasPair());
+        assertEquals(CardTriplePattern.NO_PATTERN, cardTriple.getPattern());
     }
 
     static Stream<CardTriple> trailCards() {
@@ -114,5 +104,4 @@ public class CardTripleTest {
                         new Card(CardType.SEVEN, CardSuit.TILES))
         );
     }
-
 }

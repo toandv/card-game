@@ -5,14 +5,9 @@ import cardgame.model.Card;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 public class CardTriple {
-
-    public static final int TRAIL_BASE_SCORE = 10000;
-
-    public static final int SEQUENCE_BASE_SCORE = 1000;
-
-    public static final int PAIR_BASE_SCORE = 100;
 
     private final Card first;
 
@@ -20,42 +15,30 @@ public class CardTriple {
 
     private final Card third;
 
+    private final CardTriplePattern pattern;
+
     private final int totalScore;
-
-    private boolean isTrail;
-
-    private boolean isSequence;
-
-    private boolean hasPair;
 
     public CardTriple(Card first, Card second, Card third) {
         this.first = first;
         this.second = second;
         this.third = third;
-        recognizePatterns();
+        this.pattern = recognizePatterns();
         this.totalScore = calculateTotalScore();
     }
 
     private int calculateTotalScore() {
-        int totalScore = first.getValue() + second.getValue() + third.getValue();
-        if (this.isTrail) {
-            totalScore += TRAIL_BASE_SCORE;
-        } else if (this.isSequence) {
-            totalScore += SEQUENCE_BASE_SCORE;
-        } else if (this.hasPair) {
-            totalScore += PAIR_BASE_SCORE;
-        }
-        return totalScore;
+        return pattern.getScore() + first.getValue() + second.getValue() + third.getValue();
     }
 
-    private void recognizePatterns() {
+    private CardTriplePattern recognizePatterns() {
         if (first.getCardType() == second.getCardType()
                 && third.getCardType() == second.getCardType()) {
-            this.isTrail = true;
+            return CardTriplePattern.TRAIL;
         } else if (first.getCardType() == second.getCardType()
                 || third.getCardType() == second.getCardType()
                 || first.getCardType() == third.getCardType()) {
-            this.hasPair = true;
+            return CardTriplePattern.PAIR;
         } else {
             List<Card> sortedCards = Arrays.asList(first, second, third);
             sortedCards.sort(Comparator.comparingInt(Card::getValue));
@@ -63,25 +46,18 @@ public class CardTriple {
             Card card1 = sortedCards.get(1);
             Card card2 = sortedCards.get(2);
             if (card1.getValue() - card0.getValue() == 1 && card2.getValue() - card1.getValue() == 1) {
-                this.isSequence = true;
+                return CardTriplePattern.SEQUENCE;
             }
         }
-    }
-
-    public boolean isTrail() {
-        return isTrail;
-    }
-
-    public boolean isSequence() {
-        return isSequence;
-    }
-
-    public boolean isHasPair() {
-        return hasPair;
+        return CardTriplePattern.NO_PATTERN;
     }
 
     public int getTotalScore() {
         return totalScore;
+    }
+
+    public CardTriplePattern getPattern() {
+        return pattern;
     }
 
     @Override
@@ -90,10 +66,22 @@ public class CardTriple {
                 "first=" + first +
                 ", second=" + second +
                 ", third=" + third +
-                ", totalScore=" + totalScore +
-                ", isTrail=" + isTrail +
-                ", isSequence=" + isSequence +
-                ", hasPair=" + hasPair +
+                ", pattern=" + pattern +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CardTriple that = (CardTriple) o;
+        return first.equals(that.first) &&
+                second.equals(that.second) &&
+                third.equals(that.third);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(first, second, third);
     }
 }

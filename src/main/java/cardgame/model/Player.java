@@ -1,12 +1,9 @@
 package cardgame.model;
 
-import cardgame.model.Card;
-import cardgame.model.CardDeck;
-import cardgame.model.CardTriple;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class Player {
 
@@ -20,6 +17,16 @@ public class Player {
 
     public Player(int playerId) {
         this.playerId = playerId;
+    }
+
+    public Player(int playerId, CardTriple cardTriple) {
+        this.playerId = playerId;
+        this.cardTriple = cardTriple;
+    }
+
+    public Player(int playerId, List<Card> drawnCards) {
+        this.playerId = playerId;
+        this.drawnCards.addAll(drawnCards);
     }
 
     public void receiveCard(Card card) {
@@ -46,12 +53,41 @@ public class Player {
         return drawnCards.getLast().getTopCardOrder();
     }
 
+    public int getPlayerId() {
+        return playerId;
+    }
+
+    public CardTriple getCardTriple() {
+        return cardTriple;
+    }
+
+    public List<Card> getDealtCards() {
+        return dealtCards;
+    }
+
+    public LinkedList<Card> getDrawnCards() {
+        return drawnCards;
+    }
+
     @Override
     public String toString() {
         return "Player{" +
                 "playerId=" + playerId +
                 ", cardTriple=" + cardTriple +
-                ", dealtCards=" + dealtCards +
+                ", drawnCards=" + drawnCards +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return playerId == player.playerId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(playerId);
     }
 }
