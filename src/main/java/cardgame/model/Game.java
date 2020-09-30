@@ -1,4 +1,4 @@
-package cardgame;
+package cardgame.model;
 
 import cardgame.exception.MaxPlayersExceededException;
 import cardgame.model.Card;

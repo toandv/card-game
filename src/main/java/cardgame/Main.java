@@ -1,5 +1,7 @@
 package cardgame;
 
+import cardgame.model.Game;
+
 import java.util.stream.Collectors;
 
 public class Main {
